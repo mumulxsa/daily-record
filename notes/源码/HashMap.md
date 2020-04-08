@@ -120,3 +120,25 @@ if (oldTab != null) {
 }
 ...
 ```
+
+- tableSizeFor保证hashMap的table容量始终是2的幂次方
+```
+/**
+ * Returns a power of two size for the given target capacity.
+ */
+static final int tableSizeFor(int cap) {
+    int n = cap - 1;
+    n |= n >>> 1;
+    n |= n >>> 2;
+    n |= n >>> 4;
+    n |= n >>> 8;
+    n |= n >>> 16;
+    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+}
+
+通过位移、和按位取或，将容量代表的数字2进制的第一个1后边的所有2进制数都变为1，将这个值赋给n，
+让后再把n+1返回，此时n+1一定为2的幂次方。
+数学中存在如下等式：
+2^n = 2^(n-1) + 2^(n-2) + ... + 2^1 + 2^0 + 1
+```
+

@@ -2,12 +2,14 @@ package com.lixiang.test;
 
 public class LxTest {
 
-    // HashMap
-
     public static void main(String[] args) {
 
-        System.out.println(3 >> 1);
+        ApplicationContext context = new ClassPathXmlApplicationContext("");
 
+    }
+
+    public void test01() {
+        System.out.println(3 >> 1);
     }
 
 }
